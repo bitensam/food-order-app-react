@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MealsAvailable.modules.css';
-import MealItem from '../Meals/MealItem';
+import MealItem from './MealItem/MealItem';
 import Card from '../UI/Card';
 
 const DUMMY_MEALS = [
