@@ -18,10 +18,11 @@ const Cart = ({ onHideCart }) => {
     <ul className={styles['cart-items']}>
       {cartCtx.items.map((item) => (
         <CartItem
+          key={item.id}
           name={item.name}
           price={item.price}
           amount={item.amount}
-          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onRemove={cartItemRemoveHandler.bind(null, item.id)} // preconfig the second argument
           onAdd={cartItemAddHandler.bind(null, item)}
         />
       ))}
