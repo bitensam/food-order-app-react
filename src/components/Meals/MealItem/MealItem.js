@@ -31,7 +31,7 @@ const MealItem = ({
         <p className={styles.price}>{price}</p>
       </article>
       <div>
-        <MealItemForm onAddToCart={addItemToCartHandler} />
+        <MealItemForm id={productId} onAddToCart={addItemToCartHandler} />
       </div>
     </li>
   );

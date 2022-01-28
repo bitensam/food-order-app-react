@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import Input from '../../UI/Input';
 import styles from './MealItemForm.module.css';
 
-const MealItemForm = ({ onAddToCart }) => {
+const MealItemForm = ({ id, onAddToCart }) => {
   const amountInputRef = useRef();
   const [amountIsValid, setAmountIsValid] = useState(true);
 
@@ -30,7 +30,7 @@ const MealItemForm = ({ onAddToCart }) => {
         ref={amountInputRef}
         label='amount'
         input={{
-          id: 'amount',
+          id: 'amount_' + id,
           type: 'number',
           min: '1',
           max: '5',

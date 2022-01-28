@@ -7,6 +7,9 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
+  // =================================================
+  // ADD ITEM
+
   if (action.type === 'ADD_ITEM') {
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
@@ -31,9 +34,45 @@ const cartReducer = (state, action) => {
       updatedItems = state.items.concat(action.item);
     }
 
+    console.log(updatedItems);
+
     // new state snapshot
     return { items: updatedItems, totalAmount: updatedTotalAmount };
   }
+  // ==============================================
+  // REMOVE ITEM
+  if (action.type === 'REMOVE_ITEM') {
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === action.id
+    );
+    const existingCartItem = state.items[existingCartItemIndex];
+
+    const updatedTotalAmount = state.totalAmount - existingCartItem.price;
+
+    let updatedItems;
+
+    if (existingCartItem.amount === 1) {
+      // when is 1 amount of this product remove from cart
+      updatedItems = state.items.filter((item) => item.id !== action.id);
+    } else {
+      //when is more the 1, remove amount of this product by 1
+      const updatedItem = {
+        ...existingCartItem,
+        amount: existingCartItem.amount - 1,
+      };
+      // create new array of the old items
+      updatedItems = [...state.items];
+      // remove from items in cart that one which we want by index
+      updatedItems[existingCartItemIndex] = updatedItem;
+    }
+
+    return {
+      items: updatedItems,
+      totalAmount: updatedTotalAmount,
+    };
+  }
+  // =========================================
+
   return defaultCartState;
 };
 
